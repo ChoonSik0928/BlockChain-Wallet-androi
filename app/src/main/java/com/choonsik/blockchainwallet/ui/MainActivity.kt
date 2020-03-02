@@ -1,7 +1,8 @@
-package com.choonsik.blockchainwallet
+package com.choonsik.blockchainwallet.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.choonsik.blockchainwallet.R
 
 class MainActivity : AppCompatActivity() {
 
