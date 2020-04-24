@@ -2,11 +2,19 @@ package com.choonsik.blockchainwallet.di.module
 
 import com.choonsik.blockchainwallet.di.annotation.ActivityScoped
 import com.choonsik.blockchainwallet.ui.MainActivity
+import com.choonsik.blockchainwallet.ui.MainActivityModule
+import com.choonsik.blockchainwallet.ui.splash.SplashModule
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
-//TODO UI Module 추가
 @Module
 abstract class ActivityBindingModule {
     @ActivityScoped
-    internal abstract fun getMainActivity() : MainActivity
+    @ContributesAndroidInjector(
+        modules = [
+            MainActivityModule::class,
+            SplashModule::class
+        ]
+    )
+    internal abstract fun getMainActivity(): MainActivity
 }

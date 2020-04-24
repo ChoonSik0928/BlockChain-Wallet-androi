@@ -10,35 +10,36 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.choonsik.blockchainwallet.BR
-import com.choonsik.blockchainwallet.ext.assistedViewModels
+import com.choonsik.blockchainwallet.extension.assistedViewModels
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
 abstract class BaseFragment<VM : ViewModel, B : ViewDataBinding>(
-    @LayoutRes val layoutResId: Int,
+    @LayoutRes private val layoutResId: Int,
     viewModelClass: KClass<VM>
 ) : DaggerFragment() {
-
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     protected val viewModel: VM by assistedViewModels(viewModelClass) { viewModelFactory }
 
-    protected val binding: B by lazy { DataBindingUtil.bind<B>(view!!)!! }
+    protected lateinit var binding: B
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(layoutResId, container, false)
+        binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
+        with(binding) {
             setVariable(BR.vm, viewModel)
             lifecycleOwner = viewLifecycleOwner
         }
     }
+
 }

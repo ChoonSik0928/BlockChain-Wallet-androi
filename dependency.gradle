@@ -62,6 +62,7 @@ ext.deps = deps
 def gradlePlugin = [
         android      : "com.android.tools.build:gradle:3.5.3",
         kotlin       : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+        navigation_safe_args: "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 ]
 ext.gradlePlugin = gradlePlugin
 

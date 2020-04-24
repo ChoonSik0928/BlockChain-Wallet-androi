@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import com.choonsik.blockchainwallet.R
 import com.choonsik.blockchainwallet.base.BaseFragment
-import com.choonsik.blockchainwallet.databinding.FragmentSplashBinding
+import com.choonsik.blockchainwallet.databinding.SplashFragmentBinding
 
-class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>(
-    R.layout.fragment_splash,
+class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding>(
+    R.layout.splash_fragment,
     SplashViewModel::class
 ) {
 
