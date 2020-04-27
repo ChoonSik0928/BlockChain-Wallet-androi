@@ -55,13 +55,13 @@ deps.atsl = [
         espresso_core: "androidx.test.espresso:espresso-core:3.2.0"
 ]
 
-
+deps.lottie = "com.airbnb.android:lottie:3.4.0"
 ext.deps = deps
 
 // build gradle plugin
 def gradlePlugin = [
-        android      : "com.android.tools.build:gradle:3.5.3",
-        kotlin       : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+        android             : "com.android.tools.build:gradle:3.5.3",
+        kotlin              : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
         navigation_safe_args: "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 ]
 ext.gradlePlugin = gradlePlugin
