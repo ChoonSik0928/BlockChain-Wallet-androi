@@ -7,6 +7,7 @@ versions.dagger = "2.25.4"
 versions.coroutine = "1.3.3"
 versions.lifecycle = "2.2.0"
 versions.navigation = "2.2.0"
+versions.room = "2.2.5"
 
 deps.versions = versions
 
@@ -39,6 +40,11 @@ kotlin.coroutines = [
         test         : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutine"
 ]
 deps.kotlin = kotlin
+
+deps.room = [
+        runtime : "androidx.room:room-runtime:$versions.room",
+        compiler: "androidx.room:room-compiler:$versions.room",
+]
 
 // Dagger
 deps.dagger = [

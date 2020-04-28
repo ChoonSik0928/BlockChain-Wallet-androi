@@ -66,6 +66,10 @@ dependencies {
     kapt deps.dagger.compiler
     kapt deps.dagger.android_processor
 
+    // Room
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
     implementation deps.lottie
     // test
     testImplementation deps.atsl.junit
