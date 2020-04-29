@@ -70,6 +70,8 @@ dependencies {
     implementation deps.room.runtime
     kapt deps.room.compiler
 
+    implementation deps.androidx.biometric
+
     implementation deps.lottie
     // test
     testImplementation deps.atsl.junit
