@@ -68,6 +68,7 @@ dependencies {
 
     // Room
     implementation deps.room.runtime
+    implementation deps.room.coroutine
     kapt deps.room.compiler
 
     implementation deps.androidx.biometric

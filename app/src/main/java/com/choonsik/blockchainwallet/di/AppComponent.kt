@@ -1,10 +1,9 @@
 package com.choonsik.blockchainwallet.di
 
 import com.choonsik.blockchainwallet.BlockChainWalletApplication
-import com.choonsik.blockchainwallet.di.module.ActivityBindingModule
+import com.choonsik.blockchainwallet.di.module.*
 import com.choonsik.blockchainwallet.di.module.AppModule
-import com.choonsik.blockchainwallet.di.module.DbModule
-import com.choonsik.blockchainwallet.di.module.ViewModelModule
+import com.choonsik.blockchainwallet.di.module.RepositoryModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -18,7 +17,8 @@ import javax.inject.Singleton
         AppModule::class,
         ActivityBindingModule::class,
         ViewModelModule::class,
-        DbModule::class
+        DbModule::class,
+        RepositoryModule::class
     ]
 )
 interface AppComponent : AndroidInjector<BlockChainWalletApplication> {

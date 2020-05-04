@@ -43,8 +43,9 @@ kotlin.coroutines = [
 deps.kotlin = kotlin
 
 deps.room = [
-        runtime : "androidx.room:room-runtime:$versions.room",
-        compiler: "androidx.room:room-compiler:$versions.room",
+        runtime  : "androidx.room:room-runtime:$versions.room",
+        coroutine: "androidx.room:room-ktx:$versions.room",
+        compiler : "androidx.room:room-compiler:$versions.room",
 ]
 
 // Dagger
