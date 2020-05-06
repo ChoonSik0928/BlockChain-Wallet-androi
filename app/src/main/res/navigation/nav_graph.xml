@@ -9,5 +9,15 @@
         android:id="@+id/splash"
         android:name="com.choonsik.blockchainwallet.ui.splash.SplashFragment"
         android:label="SplashFragment"
-        tools:layout="@layout/splash_fragment" />
+        tools:layout="@layout/splash_fragment">
+        <action
+            android:id="@+id/action_splash_to_pin_code_reg"
+            app:destination="@id/pin_code_reg" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pin_code_reg"
+        android:name="com.choonsik.blockchainwallet.ui.pin_code.regstration.PinCodeRegFragment"
+        android:label="PinCodeRegFragment"
+        tools:layout="@layout/pin_reg_code_fragment" />
 </navigation>
