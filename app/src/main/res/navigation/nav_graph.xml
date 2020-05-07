@@ -11,6 +11,10 @@
         android:label="SplashFragment"
         tools:layout="@layout/splash_fragment">
         <action
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             android:id="@+id/action_splash_to_pin_code_reg"
             app:destination="@id/pin_code_reg" />
     </fragment>
