@@ -25,6 +25,6 @@ class SplashViewModel @Inject constructor(
     }
 
     companion object{
-        const val DELAY_MILLISECONDS = 1000L
+        const val DELAY_MILLISECONDS = 2000L
     }
 }
