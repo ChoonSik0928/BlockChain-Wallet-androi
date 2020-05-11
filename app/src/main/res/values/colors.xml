@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="bgColor">#1b262c</color>
+    <color name="text_color_default">#f9f9f9</color>
 </resources>
