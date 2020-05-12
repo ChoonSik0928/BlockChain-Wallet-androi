@@ -15,19 +15,90 @@
         android:layout_height="match_parent"
         android:background="@color/bgColor">
 
-        <com.airbnb.lottie.LottieAnimationView
-            app:layout_constraintTop_toTopOf="parent"
+        <!--      <ImageButton-->
+        <!--          android:id="@+id/btn_close"-->
+        <!--          android:layout_height="wrap_content"-->
+        <!--          android:layout_width="wrap_content"-->
+        <!--          android:backgroundTint="@color/bgColor"-->
+        <!--          android:src="@drawable/ic_arrow_back"/>-->
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:text="보안을 위해 비밀번호를 등록해주세요"
+            android:textColor="@color/text_color_default"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="비밀번호를 입력해주세요"
+            android:textColor="@color/text_color_default"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lav_first"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@color/colorPrimary"/>
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/lav_second"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_second"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/lav_third"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lav_first"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            app:layout_constraintTop_toTopOf="@+id/lav_first" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_third"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/lav_fourth"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lav_second"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            app:layout_constraintTop_toTopOf="@+id/lav_first" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_fourth"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lav_third"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            app:layout_constraintTop_toTopOf="@+id/lav_first" />
 
         <com.choonsik.blockchainwallet.ui.widget.pin_code_view.PinKeyboardView
             android:id="@+id/pv_keyboard"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:onKeyboard ="@{vm.onClickKey}"
+            android:onKeyboard="@{vm.onClickKey}"
             app:isShuffle="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_default="percent"
