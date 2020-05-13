@@ -50,11 +50,11 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lav_first"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="24dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/pin_empty_bg"
             app:layout_constraintEnd_toStartOf="@+id/lav_second"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,9 +62,9 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lav_second"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@color/colorPrimary"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/pin_empty_bg"
             app:layout_constraintEnd_toStartOf="@+id/lav_third"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/lav_first"
@@ -73,9 +73,9 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lav_third"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@color/colorPrimary"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/pin_empty_bg"
             app:layout_constraintEnd_toStartOf="@+id/lav_fourth"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/lav_second"
@@ -84,10 +84,10 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lav_fourth"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginEnd="40dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/pin_empty_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/lav_third"

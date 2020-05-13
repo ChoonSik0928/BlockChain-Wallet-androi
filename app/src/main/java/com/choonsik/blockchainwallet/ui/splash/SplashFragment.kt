@@ -15,14 +15,30 @@ class SplashFragment : BaseFragment<SplashViewModel, SplashFragmentBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.checkSecureSetting()
-        setObserver()
+        binding.animationView.addAnimatorUpdateListener {
+            val progress = (it.animatedValue as Float * 100).toInt()
+            if(progress >= 90){
+                val direction = SplashFragmentDirections.actionSplashToPinCodeReg()
+                binding.root.findNavController().navigate(direction)
+            }
+        }
+//        viewModel.checkSecureSetting()
+//        setObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.animationView.resumeAnimation()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.animationView.pauseAnimation()
     }
 
     private fun setObserver() {
         viewModel.actionPinCodeRegistration.observe(viewLifecycleOwner, EventObserver {
-            val direction = SplashFragmentDirections.actionSplashToPinCodeReg()
-            binding.root.findNavController().navigate(direction)
+
         })
     }
 }
