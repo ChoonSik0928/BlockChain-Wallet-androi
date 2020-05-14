@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:background="@color/bgColor">
 
         <!--      <ImageButton-->
@@ -40,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="비밀번호를 입력해주세요"
+            android:text="@{vm.descriptionStringRes, default=@string/fragment_reg_start_description}"
             android:textColor="@color/text_color_default"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"

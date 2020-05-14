@@ -11,6 +11,8 @@
         android:label="SplashFragment"
         tools:layout="@layout/splash_fragment">
         <action
+            app:popUpTo="@id/splash"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"

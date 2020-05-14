@@ -1,11 +1,10 @@
 package com.choonsik.blockchainwallet.ui.pin_code.regstration
 
+import android.animation.LayoutTransition
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import com.airbnb.lottie.LottieAnimationView
-import com.airbnb.lottie.LottieDrawable.RESTART
-import com.airbnb.lottie.LottieDrawable.REVERSE
 import com.choonsik.blockchainwallet.R
 import com.choonsik.blockchainwallet.base.BaseFragment
 import com.choonsik.blockchainwallet.common.EventObserver
@@ -18,15 +17,17 @@ class PinCodeRegFragment : BaseFragment<PinCodeRegViewModel, PinRegCodeFragmentB
 ) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (binding.root as ViewGroup).layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+
         viewModel.pinClick.observe(viewLifecycleOwner, EventObserver {
             val index = it.index
             val key = it.key
             if (key == PinKey.BackKey) {
                 when (index) {
-                    1 -> revertAnimation(binding.lavFirst)
-                    2 -> revertAnimation(binding.lavSecond)
-                    3 -> revertAnimation(binding.lavThird)
-                    4 -> revertAnimation(binding.lavFourth)
+                    1 -> clearInputImage(binding.lavFirst)
+                    2 -> clearInputImage(binding.lavSecond)
+                    3 -> clearInputImage(binding.lavThird)
+                    4 -> clearInputImage(binding.lavFourth)
                 }
 
             } else {
@@ -38,6 +39,13 @@ class PinCodeRegFragment : BaseFragment<PinCodeRegViewModel, PinRegCodeFragmentB
                 }
             }
         })
+
+        viewModel.inputFinishAndClear.observe(viewLifecycleOwner, EventObserver {
+            clearInputImage(binding.lavFirst)
+            clearInputImage(binding.lavSecond)
+            clearInputImage(binding.lavThird)
+            clearInputImage(binding.lavFourth)
+        })
     }
 
     private fun startAnimation(lottieView: LottieAnimationView) {
@@ -45,7 +53,7 @@ class PinCodeRegFragment : BaseFragment<PinCodeRegViewModel, PinRegCodeFragmentB
         lottieView.playAnimation()
     }
 
-    private fun revertAnimation(lottieView: LottieAnimationView) {
+    private fun clearInputImage(lottieView: LottieAnimationView) {
         lottieView.setImageResource(0)
         lottieView.clearAnimation()
     }

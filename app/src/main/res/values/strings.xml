@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BlockChainWallet</string>
+    <string name="fragment_reg_start_description">비밀번호를 입력해주세요</string>
+    <string name="fragment_reg_re_input_description">입력한 번호를 다시 한번 입력해주세요</string>
 </resources>

@@ -10,11 +10,11 @@ import com.choonsik.blockchainwallet.ui.widget.pin_code_view.listener.KeyboardCl
 fun onKeyboard(view: PinKeyboardView, onClickKey: OnClickKey?) {
     view.setKeyboardClickListener(object : KeyboardClickListener{
         override fun onKeyClick(key: PinKey) {
-            onClickKey?.onKey(key)
+            onClickKey?.onKey(view, key)
         }
     })
 }
 
 interface OnClickKey{
-    fun onKey(key: PinKey)
+    fun onKey(view:View, key: PinKey)
 }

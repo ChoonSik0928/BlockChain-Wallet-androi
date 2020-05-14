@@ -1,21 +1,39 @@
 package com.choonsik.blockchainwallet.ui.pin_code.regstration
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.choonsik.blockchainwallet.R
 import com.choonsik.blockchainwallet.common.Event
 import com.choonsik.blockchainwallet.ui.widget.pin_code_view.keyboard.PinKey
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PinCodeRegViewModel @Inject constructor() : ViewModel() {
     private val _pinClick = MutableLiveData<Event<PinKeyEvent>>()
     val pinClick: LiveData<Event<PinKeyEvent>> = _pinClick
+    private val _inputFinishAndClear = MutableLiveData<Event<Unit>>()
+    val inputFinishAndClear: LiveData<Event<Unit>> = _inputFinishAndClear
 
+    val descriptionStringRes = MutableLiveData<Int>()
     private val _registrationKeys = arrayListOf<PinKey>()
     private val _inputKeys = arrayListOf<PinKey>()
+    private var isDelayed = false
 
-    fun onClickKey(key: PinKey) {
+    init {
+        descriptionStringRes.value = R.string.fragment_reg_start_description
+    }
+//
+//    fun reset(){
+//        descriptionMessage.value =
+//    }
+
+    fun onClickKey(view: View, key: PinKey) {
+        if (isDelayed) return
         when (key) {
             is PinKey.BackKey -> {
                 if (_inputKeys.isNotEmpty() && _inputKeys.size < PIN_MAX_SIZE) {
@@ -25,15 +43,20 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
             }
             else -> {
                 // +1 마지막 등록된
-                val isLastInput = _inputKeys.size == PIN_MAX_SIZE
+                val isLastInput = _inputKeys.size + 1 == PIN_MAX_SIZE
                 _inputKeys.add(key)
                 notifyPin(key)
 
                 /** 등록 **/
                 if (!isRegistration() && isLastInput) {
-
-//                    registrationKey()
-//                    displayInputPinCode()
+                    regInput()
+                    viewModelScope.launch {
+                        isDelayed = true
+                        delay(600)
+                        descriptionStringRes.value = R.string.fragment_reg_re_input_description
+                        _inputFinishAndClear.value = Event(Unit)
+                        isDelayed = false
+                    }
                 }
                 /** 핀 등록 완료 + 입력한 핀의 마지막 입력**/
                 else if (isRegistration() && isLastInput) {
@@ -60,6 +83,11 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
 
     private fun isRegistration(): Boolean {
         return _registrationKeys.isNotEmpty()
+    }
+
+    private fun regInput() {
+        _registrationKeys.addAll(_inputKeys)
+        _inputKeys.clear()
     }
 
     private fun isEqualsKey(): Boolean {
