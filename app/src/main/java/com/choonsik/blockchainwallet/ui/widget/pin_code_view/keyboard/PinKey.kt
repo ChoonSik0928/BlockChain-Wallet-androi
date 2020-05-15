@@ -8,6 +8,7 @@ sealed class PinKey {
     object BackKey : PinKey()
     object EmptyKey : PinKey()
 
+
     companion object {
         fun getString(pinKey: PinKey): String {
             when (pinKey) {
@@ -36,5 +37,13 @@ sealed class PinKey {
                 else -> throw IllegalArgumentException()
             }
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return getString(other as PinKey) == getString(this)
+    }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
     }
 }

@@ -18,6 +18,9 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
     val pinClick: LiveData<Event<PinKeyEvent>> = _pinClick
     private val _inputFinishAndClear = MutableLiveData<Event<Unit>>()
     val inputFinishAndClear: LiveData<Event<Unit>> = _inputFinishAndClear
+    private val _successRegistration = MutableLiveData<Event<Unit>>()
+    val successRegistration: LiveData<Event<Unit>> = _successRegistration
+
 
     val descriptionStringRes = MutableLiveData<Int>()
     private val _registrationKeys = arrayListOf<PinKey>()
@@ -61,16 +64,16 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
                 /** 핀 등록 완료 + 입력한 핀의 마지막 입력**/
                 else if (isRegistration() && isLastInput) {
 
-//                    val isEquals = isEqualsKey()
-//                    if (isEquals) {
+                    val isEquals = isEqualsKey()
+                    if (isEquals) {
+                        _successRegistration.value = Event(Unit)
 //                        description.value = "핀번호가 일치합니다"
 //                        pinPreference.savePinInfo(encryptedValue)
 //                        registrationComplete.call()
-//                    } else {
+                    } else {
 //                        description.value = "핀번호가 일치하지 않습니다"
 //                        _inputKeys.clear()
-//                    }
-//                    displayInputPinCode()
+                    }
                 }
             }
         }
@@ -91,7 +94,8 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun isEqualsKey(): Boolean {
-        return false
+        return _inputKeys == _registrationKeys
+
     }
 
     data class PinKeyEvent(val index: Int, val key: PinKey)

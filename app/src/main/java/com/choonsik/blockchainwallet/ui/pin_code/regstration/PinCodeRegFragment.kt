@@ -46,6 +46,11 @@ class PinCodeRegFragment : BaseFragment<PinCodeRegViewModel, PinRegCodeFragmentB
             clearInputImage(binding.lavThird)
             clearInputImage(binding.lavFourth)
         })
+
+        viewModel.successRegistration.observe(viewLifecycleOwner,EventObserver{
+            binding.lavSuccess.visibility = View.VISIBLE
+            binding.lavSuccess.playAnimation()
+        })
     }
 
     private fun startAnimation(lottieView: LottieAnimationView) {

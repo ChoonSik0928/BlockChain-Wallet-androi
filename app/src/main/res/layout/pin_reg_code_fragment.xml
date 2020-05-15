@@ -105,6 +105,18 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent=".425"
             app:pinType="numeric" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/lock_finish" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
