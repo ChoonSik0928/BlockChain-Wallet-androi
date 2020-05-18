@@ -1,5 +1,6 @@
 package com.choonsik.blockchainwallet.ui.pin_code.regstration
 
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
@@ -9,9 +10,13 @@ import androidx.lifecycle.viewModelScope
 import com.choonsik.blockchainwallet.R
 import com.choonsik.blockchainwallet.common.Event
 import com.choonsik.blockchainwallet.ui.widget.pin_code_view.keyboard.PinKey
+import com.choonsik.blockchainwallet.util.crypt.CryptManager
+import com.choonsik.blockchainwallet.util.crypt.KeyStoreWrapper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
+import kotlin.random.Random
 
 class PinCodeRegViewModel @Inject constructor() : ViewModel() {
     private val _pinClick = MutableLiveData<Event<PinKeyEvent>>()
@@ -96,6 +101,18 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
     private fun isEqualsKey(): Boolean {
         return _inputKeys == _registrationKeys
 
+    }
+
+    private fun createMasterKey(){
+        val data = createRandomData()
+    }
+
+    private fun createRandomData(): String {
+        val random = Random(Calendar.getInstance().timeInMillis)
+        val randomInt = Random(Calendar.getInstance().timeInMillis)
+        val randomSize = randomInt.nextInt(200, 500)
+        val bytes = random.nextBytes(randomSize)
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
 
     data class PinKeyEvent(val index: Int, val key: PinKey)
