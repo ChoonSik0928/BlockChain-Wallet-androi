@@ -18,7 +18,8 @@ import javax.inject.Singleton
         ActivityBindingModule::class,
         ViewModelModule::class,
         DbModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        CryptModule::class
     ]
 )
 interface AppComponent : AndroidInjector<BlockChainWalletApplication> {
