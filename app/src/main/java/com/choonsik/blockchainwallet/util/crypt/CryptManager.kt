@@ -6,13 +6,13 @@ import java.util.concurrent.Executors
 
 object CryptManager {
 
-    fun encryptPlainText(keyAlias: String, data: String): String {
-        val keyStore = KeyStoreWrapper.createKey(keyAlias)
+    fun encryptPlainText(keyAlias: String, data: String, password: String): String {
+        val keyStore = KeyStoreWrapper.createKey(keyAlias, password)
         return CipherWrapper.encrypt(data, keyStore, useInitializationVector = true)
     }
 
-    fun decryptPlainText(keyAlias: String, data: String): String {
-        val key = KeyStoreWrapper.getKey(keyAlias)
+    fun decryptPlainText(keyAlias: String, data: String, password: String): String {
+        val key = KeyStoreWrapper.getKey(keyAlias, password)
         return CipherWrapper.decrypt(data, key, useInitializationVector = true)
     }
 
@@ -20,12 +20,13 @@ object CryptManager {
         fragment: Fragment,
         keyAlias: String,
         data: String,
+        password: String,
         success: (result: String) -> Unit,
         error: (errorCode: Int, errorMessage: String) -> Unit,
         useInitializationVector: Boolean = true
     ) {
         val executor = Executors.newSingleThreadExecutor()
-        val keyStore = KeyStoreWrapper.createKey(keyAlias)
+        val keyStore = KeyStoreWrapper.createKey(keyAlias, password)
         val cipher = CipherWrapper.getEncryptCipher(keyStore)
 
         val biometricPrompt =
@@ -54,12 +55,13 @@ object CryptManager {
         fragment: Fragment,
         keyAlias: String,
         data: String,
+        password: String,
         success: (result: String) -> Unit,
         error: (errorCode: Int, errorMessage: String) -> Unit,
         useInitializationVector: Boolean = true
     ) {
         val executor = Executors.newSingleThreadExecutor()
-        val key = KeyStoreWrapper.getKey(keyAlias)
+        val key = KeyStoreWrapper.getKey(keyAlias, password)
         var cipher = if (useInitializationVector) {
             CipherWrapper.getDecryptCipher(key, CipherWrapper.getIVSpec(data))
         } else {

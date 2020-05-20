@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "security")
 data class SecurityEntity(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     var id: Long = 0L,
     val maskerKey: String
 )

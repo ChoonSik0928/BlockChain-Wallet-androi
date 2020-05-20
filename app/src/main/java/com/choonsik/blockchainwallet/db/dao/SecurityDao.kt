@@ -12,8 +12,8 @@ import com.choonsik.blockchainwallet.db.entities.SecurityEntity
 @Dao
 interface SecurityDao {
 
-    @Insert
-    fun insert(security: SecurityEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(security: SecurityEntity)
 
     @Query("SELECT * FROM security WHERE id IS 0")
     suspend fun getSecurity(): SecurityEntity?

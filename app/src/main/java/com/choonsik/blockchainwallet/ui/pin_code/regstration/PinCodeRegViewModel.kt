@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.choonsik.blockchainwallet.R
 import com.choonsik.blockchainwallet.common.Event
 import com.choonsik.blockchainwallet.crypt.CryptConst.KEY_MASTER_ALIAS
+import com.choonsik.blockchainwallet.crypt.WalletCrypt
 import com.choonsik.blockchainwallet.ui.widget.pin_code_view.keyboard.PinKey
 import com.choonsik.blockchainwallet.util.crypt.CryptManager
 import kotlinx.coroutines.delay
@@ -17,7 +18,9 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.random.Random
 
-class PinCodeRegViewModel @Inject constructor() : ViewModel() {
+class PinCodeRegViewModel @Inject constructor(
+    private val walletCrypt: WalletCrypt
+) : ViewModel() {
     private val _pinClick = MutableLiveData<Event<PinKeyEvent>>()
     val pinClick: LiveData<Event<PinKeyEvent>> = _pinClick
     private val _inputFinishAndClear = MutableLiveData<Event<Unit>>()
@@ -71,9 +74,9 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
                     val isEquals = isEqualsKey()
                     if (isEquals) {
                         _successRegistration.value = Event(Unit)
-//                        description.value = "핀번호가 일치합니다"
-//                        pinPreference.savePinInfo(encryptedValue)
-//                        registrationComplete.call()
+                        viewModelScope.launch {
+                            walletCrypt.pinRegister(PinKey.getKeys(_registrationKeys))
+                        }
                     } else {
 //                        description.value = "핀번호가 일치하지 않습니다"
 //                        _inputKeys.clear()
@@ -81,7 +84,6 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
                 }
             }
         }
-
     }
 
     private fun notifyPin(key: PinKey) {
@@ -99,21 +101,6 @@ class PinCodeRegViewModel @Inject constructor() : ViewModel() {
 
     private fun isEqualsKey(): Boolean {
         return _inputKeys == _registrationKeys
-
-    }
-
-    private fun createMasterKey() {
-        val data = createRandomData()
-        val pinAlias =  CryptManager.encryptPlainText(KEY_MASTER_ALIAS, data)
-
-    }
-
-    private fun createRandomData(): String {
-        val random = Random(Calendar.getInstance().timeInMillis)
-        val randomInt = Random(Calendar.getInstance().timeInMillis)
-        val randomSize = randomInt.nextInt(50, 100)
-        val bytes = random.nextBytes(randomSize)
-        return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
 
     data class PinKeyEvent(val index: Int, val key: PinKey)

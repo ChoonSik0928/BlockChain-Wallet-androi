@@ -1,6 +1,7 @@
 package com.choonsik.blockchainwallet.ui.splash
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,19 +13,22 @@ import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
     private val appRepository: AppRepository
-): ViewModel(){
-    val actionPinCodeRegistration = MutableLiveData<Event<Unit>>()
+) : ViewModel() {
+    private val _actionPinCodeRegistration = MutableLiveData<Event<Unit>>()
+    val actionPinCodeRegistration: LiveData<Event<Unit>> = _actionPinCodeRegistration
 
-    fun checkSecureSetting(){
+    fun checkSecureSetting() {
         viewModelScope.launch {
-            if(!appRepository.hasSecurityData()){
-                delay(DELAY_MILLISECONDS)
-                actionPinCodeRegistration.value = Event(Unit)
+            Log.e("check","hasData = ${appRepository.hasSecurityData()}")
+            if (!appRepository.hasSecurityData()) {
+                _actionPinCodeRegistration.value = Event(Unit)
+            }else{
+
             }
         }
     }
 
-    companion object{
+    companion object {
         const val DELAY_MILLISECONDS = 2000L
     }
 }

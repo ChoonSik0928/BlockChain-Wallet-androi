@@ -64,12 +64,13 @@ object KeyStoreWrapper {
         load(null)
     }
 
-    fun getKey(alias: String) : SecretKey{
-        return keyStore.getKey(alias, null) as SecretKey
+    fun getKey(alias: String,password: String) : SecretKey{
+        return keyStore.getKey(alias, password.toCharArray()) as SecretKey
     }
 
     fun createKey(
         alias: String,
+        password: String,
         userAuthenticationRequired: Boolean = false,
         invalidatedByBiometricEnrollment: Boolean = true,
         durationSeconds: Int = -1,
@@ -84,7 +85,7 @@ object KeyStoreWrapper {
         )
 
         // 패스워드는 키를 생성시 접근을 위한 password 인데 어떤 형태로 활용 방법을 고민
-        return getKey(alias)
+        return getKey(alias, password)
     }
 
     /**

@@ -37,6 +37,15 @@ sealed class PinKey {
                 else -> throw IllegalArgumentException()
             }
         }
+
+        fun getKeys(keys: ArrayList<PinKey>): String {
+            var value = ""
+            keys.forEach {
+                value += getString(it)
+            }
+
+            return value
+        }
     }
 
     override fun equals(other: Any?): Boolean {
