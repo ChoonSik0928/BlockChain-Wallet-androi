@@ -80,4 +80,5 @@ dependencies {
     androidTestImplementation deps.atsl.espresso_core
     testImplementation deps.kotlin.coroutines.test
 
+    implementation 'org.bitcoinj:bitcoinj-core:0.15.8'
 }
